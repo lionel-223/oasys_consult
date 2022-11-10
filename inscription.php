@@ -28,33 +28,42 @@ require('config.php');
 
 if (isset($_POST['username'], $_POST['password'])){
 
-  $user = $_POST['username'];
-  echo $user;
         // récupérer le nom d'utilisateur et supprimer les antislashes ajoutés par le formulaire
         $username = stripslashes($_POST['username']);
         $username = mysqli_real_escape_string($conn, $username);
-        // récupérer l'email et supprimer les antislashes ajoutés par le formulaire
-        $email = stripslashes($_REQUEST['email']);
-        $email = mysqli_real_escape_string($conn, $email);
         // récupérer le mot de passe et supprimer les antislashes ajoutés par le formulaire
         $password = stripslashes($_POST['password']);
         $password = mysqli_real_escape_string($conn, $password);
+        // récupérer l'email et supprimer les antislashes ajoutés par le formulaire
+        $nom = stripslashes($_REQUEST['nom']);
+        $nom = mysqli_real_escape_string($conn, $nom);
+        // récupérer l'email et supprimer les antislashes ajoutés par le formulaire
+        $tel = stripslashes($_REQUEST['tel']);
+        $tel = mysqli_real_escape_string($conn, $tel);
         //requéte SQL + mot de passe crypté
-        $query = "INSERT into `clients` (username, password)
-                    VALUES ('$username', '$password')";
+        $query = "INSERT into `client` (Nom_C, Tel_C, username, password)
+                    VALUES ('$nom', '$tel', '$username', '$password')";
         // Exécuter la requête sur la base de données
          $res = mysqli_query($conn, $query);
     if($res){
        echo "<div class='sucess'>
              <h3>Vous êtes inscrit avec succès.</h3>
-             <p>Cliquez ici pour vous <a href='login.php'>connecter</a></p>
+             <p>Cliquez ici pour vous <a href='connexion.php'>connecter</a></p>
        </div>";
     }
 }
-?>
+else{?>
     
   <form method="POST" action="">
 
+   <div class="form-floating">
+      <input type="nom" name="nom" class="form-control" id="floatingPassword" placeholder="Nom" required>
+      <label for="floatingPassword">Nom</label>
+    </div>
+    <div class="form-floating">
+      <input type="tel" name="tel" class="form-control" id="floatingPassword" placeholder="Tél" required>
+      <label for="floatingPassword">Tél</label>
+    </div>
     <div class="form-floating">
       <input type="username" name="username" class="form-control" id="floatingInput" placeholder="name@example.com" required>
       <label for="floatingInput">Nom d'utilisateur</label>
@@ -64,14 +73,9 @@ if (isset($_POST['username'], $_POST['password'])){
       <label for="floatingPassword">Mot de passe</label>
     </div>
 
-    <div class="checkbox mb-3">
-      <label>
-        <input type="checkbox" value="remember-me"> Se rappeler de moi
-      </label>
-    </div>
     <button class="w-100 btn btn-lg btn-primary" type="submit">Enregistrer</button>
     <p class="mt-5 mb-3 text-muted">&copy; 2017–2022</p>
   </form>
-    
+    <?}?>
   </body>
 </html>
