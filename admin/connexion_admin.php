@@ -11,7 +11,7 @@
     <!-- CSS only -->
 <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-Zenh87qX5JnK2Jl0vWa8Ck2rdkQ2Bzep5IDxbcnCeuOxjzrPF/et3URy9Bv1WTRi" crossorigin="anonymous">
 
-<link rel="stylesheet" href="/css/style.css" />
+<link rel="stylesheet" href="style.css" />
 
 <!-- JavaScript Bundle with Popper -->
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-OERcA2EqjJCMA+/3y+gxIOqMEjwtxJY7qPCqsdltbNJuaOe923+mo//f6V8Qbsw3" crossorigin="anonymous"></script>
@@ -19,7 +19,6 @@
 
     
     <!-- Custom styles for this template -->
-    <link href="signin.css" rel="stylesheet">
   </head>
   <body class="text-center">
 
@@ -37,7 +36,7 @@ if (isset($_POST['username'], $_POST['password'])){
         $password = stripslashes($_POST['password']);
         $password = mysqli_real_escape_string($conn, $password);
         //requéte SQL + mot de passe crypté
-        $query = "SELECT * FROM `client` WHERE username='$username' and password='$password'";
+        $query = "SELECT * FROM `admin` WHERE username='$username' and password='$password'";
         // Exécuter la requête sur la base de données
          $res = mysqli_query($conn, $query);
          $rows = mysqli_num_rows($res);
