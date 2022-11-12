@@ -47,6 +47,12 @@ if (isset($_POST['username'], $_POST['password'])){
     else{ echo "<p><font color= 'red'> Le nom d'utilisateur ou le mot de passe est incorrect </font></p>";}
 }
 ?>
+
+<?       echo "<div class='sucess'>
+             <h3>Vous n'avez pas encore de compte?</h3>
+             <p>Cliquez ici pour vous <a href='inscription_admin.php'>inscrire</a></p>
+       </div>"
+?>
     
 <main class="form-signin w-100 m-auto">
   <form method="post">
